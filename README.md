@@ -1,5 +1,7 @@
 # SSM ADMIN CLI TOOL
 
+![ssm-admin logs](https://github.com/HarshavardhanG7697/ssm-admin/assets/84803301/5ad0f2b1-1d57-4f78-8b00-66525839886d)
+
 A tool to perform multiple tasks (which I have not yet thought about but currently only to view logs) related to Amazon SSM agent via the command line.
 ## WHY?
 Because I am lazy. I do not want to spend time trying to `cd` into the correct directory or type a loooooooooooonnnnnnnnnnnggggg directory path only to view a log file.
