@@ -1,5 +1,7 @@
 # SSM ADMIN CLI TOOL
 
+![ssm-admin logs](https://github.com/HarshavardhanG7697/ssm-admin/assets/84803301/5ad0f2b1-1d57-4f78-8b00-66525839886d)
+
 A tool to perform multiple tasks (which I have not yet thought about but currently only to view logs) related to Amazon SSM agent via the command line.
 ## WHY?
 Because I am lazy. I do not want to spend time trying to `cd` into the correct directory or type a loooooooooooonnnnnnnnnnnggggg directory path only to view a log file.
@@ -10,18 +12,24 @@ Make sure you have **Python3.7** or higher installed on your system.
 Switch to **root user** and then just use `$ pip install ssm-admin` or `$pip3 install ssm-admin` (if you are using a macbook).
 
 ## HOW TO USE?
-The intention of this tool is that you can either view the logs right on the instance or you can download the logs to a different machine and use the tool to view them. 
 
-- IF you are viewing logs present in the instance itself, switch to root user `$ sudo su -`. If not, skip this.
-- `ssm-admin agent-logs` directly opens up the latest amazon-ssm-agent.log file.
-- `ssm-admin command-logs` needs a mandatory option `--command-id`. Specify the command ID of which you want to view the `stdout` file and it will open it for you.
+### Within The Instance
+The intention of this tool is that you can either view the logs right on the instance or you can download the logs to a different machine and use the tool to view them. All the information can be viewed using the `--help` option.
+Example:
+```
+# ssm-admin --help
+# ssm-admin command-logs --help
+```
+The tool currently consists of 3 commands. They are as follows:
+1. `agent-logs`: This is to view the ssm agent logs. 
+2. `command-logs`: This is to view the logs of SSM Command Invocations. It takes an argument `command-id`. Currently, this only supports logs from Run-Command and Patch operations.
+3. `list-commands`: This will output a table of command IDs and their respective time of creation. The latest command invocation will be at the top.
 
-**NOTE**:
-For all the above commands, if you are using the tool on another instance or in your local machine, then you need to specify the `--log-dir` option.
-- If you are viewing the agent logs, then you need to provide the path to the directory which contains the `amazon-ssm-agent.log` file. This will be in `/var/log/amazon/ssm/` directory in an EC2 instance. 
-For example, if you have downloaded just the agent logs and the path is `~/Downloads/amazon-ssm-agent.log` then the command will look like `$ ssm-admin agent-logs --log-dir ~/Downloads`.
-
-- For command logs, the `--log-dir` should point to the directory that is equivalent to `/var/lib/amazon/ssm/Instance-Id/document/orchestration/` directory in the instance.
+### Outside The Instance
+If you have collected the ssm related logs and downloaded them to your local machine for further investigation, then you can use the option `--log-dir` for all the sub-commands mentioned above. 
+1. `agent-logs`: The path specified must be the path to a directory which contains `amazon-ssm-agent.log` file.
+2. `command-logs`: The path specified must be path to a directory which contains the `orchestration` directory
+3. `list-commands`: The path specified must be path to a directory which contains the `orchestration` directory
 
 ## ROADMAP
 This is very basic. Does not do much. However, there are lot of features that I am planning to add and you too can contribute:

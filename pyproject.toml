@@ -1,14 +1,13 @@
 [tool.poetry]
 name = "ssm-admin"
-version = "0.1.0"
-description = ""
+version = "0.2.0"
+description = "A tool to perform multiple tasks (which I have not yet thought about but currently only to view logs) related to Amazon SSM agent via the command line."
 authors = ["HarshavardhanGowda <harsha7697@gmail.com>"]
 readme = "README.md"
-# packages = [{include = "ssm_admin"}]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-typer = {extras = ["all"], version = "^0.9.0"}
+typer = { extras = ["all"], version = "^0.9.0" }
 rich = "^13.5.2"
 botocore = "^1.31.37"
 structlog = "^23.1.0"
